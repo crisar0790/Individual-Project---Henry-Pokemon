@@ -3,31 +3,24 @@ const router = express.Router();
 const axios = require('axios');
 const { Pokemon, Type } = require('../db');
 
-//colocar un ciclo for con la url de result
-//Mejorar este código usando dos for 
 const getApi = async () => {
     const pokemons = [];
-    const url = ['https://pokeapi.co/api/v2/pokemon', 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20'];
-    for (let u of url) {
-        const apiReq = await axios.get(u);
-        const apiRes = await apiReq.data.results;
-        for (let r of apiRes) {
-            const subReq = await axios.get(r.url);
-            const subRes = await subReq.data;
-            let poke = {
-                name: r.name,
-                id: subRes.id,
-                life: subRes.stats[0].base_stat,
-                attack: subRes.stats[3].base_stat,
-                defense: subRes.stats[4].base_stat,
-                speed: subRes.stats[5].base_stat,
-                height: subRes.height,
-                weight: subRes.weight,
-                image: subRes.sprites.other.dream_world.front_default,
-                type: subRes.types.map(t => t.type.name)
-            }
-            pokemons.push(poke);
+    for (let id = 1; id < 41; id++) {
+        const idReq = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        const idRes = await idReq.data;
+        let poke = {
+            name: idRes.name,
+            id: idRes.id,
+            life: idRes.stats[0].base_stat,
+            attack: idRes.stats[3].base_stat,
+            defense: idRes.stats[4].base_stat,
+            speed: idRes.stats[5].base_stat,
+            height: idRes.height,
+            weight: idRes.weight,
+            image: idRes.sprites.other.dream_world.front_default,
+            type: idRes.types.map(t => t.type.name)
         };
+        pokemons.push(poke);
     }
     return pokemons;
 }
@@ -133,6 +126,9 @@ router.post('/', async (req, res, next) => {
     const { name, life, attack, defense, speed, height, weight, image, type } = req.body;
     try {
         if (!name) return res.status(400).send('El nombre es un campo obligatorio.');
+        let pokemonTotal = await getAllPokemons();
+        let pokemonName = pokemonTotal.find(p => p.name.toLowerCase() === name.toLowerCase())
+        if (pokemonName) return res.status(400).send('Ya existe un pokemon con ese nombre.')
         if (isNaN(life) || isNaN(attack) || isNaN(defense) || isNaN(speed) || isNaN(height) || isNaN(weight)) {
             return res.status(400).send('Estos campos deben recibir números enteros.')
         }
