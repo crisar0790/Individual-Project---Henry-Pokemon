@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const { Pokemon, Type } = require('../db');
-const { getApi, getDB, getAllPokemons } = require('../controllers')
+const { getApi, getDB, getAllPokemons, getByName } = require('../controllers')
 
 
 //Trae el pokemon cuyo id coincida con el ingresado por params:
 router.get('/:id', async (req, res, next) => {
     const { id } = req.params;
     try {
-        if (!isNaN(id) && id < 41) {
+        if (!isNaN(id)) {
             const idReq = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
             const idRes = await idReq.data;
             let poke = {
@@ -42,12 +42,15 @@ router.get('/:id', async (req, res, next) => {
 router.get('/', async (req, res, next) => {
     const { name } = req.query;
     try {
-        let pokemonTotal = await getAllPokemons();
+        let pokemonDB = await getDB();
         if (name) {
-            let pokemonName = pokemonTotal.find(p => p.name.toLowerCase() === name.toLowerCase())
+            const pokemonAPI = await getByName(name);
+            let pokemonName = pokemonDB.find(p => p.name.toLowerCase() === name.toLowerCase());
+            if (pokemonAPI) return res.json(pokemonAPI);
             if (pokemonName) return res.json(pokemonName);
             else return res.status(404).send('El nombre ingresado no corresponde a un Pokemon existente.')
         } else {
+            const pokemonTotal = await getAllPokemons();
             return res.json(pokemonTotal);
         }
     } catch (error) {

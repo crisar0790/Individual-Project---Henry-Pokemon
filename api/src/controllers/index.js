@@ -23,6 +23,28 @@ const getApi = async () => {
     return pokemons;
 }
 
+const getByName = async (name) => {
+    try {
+        const idReq = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        const idRes = await idReq.data;
+            let poke = {
+                name: idRes.name,
+                id: idRes.id,
+                life: idRes.stats[0].base_stat,
+                attack: idRes.stats[3].base_stat,
+                defense: idRes.stats[4].base_stat,
+                speed: idRes.stats[5].base_stat,
+                height: idRes.height,
+                weight: idRes.weight,
+                image: idRes.sprites.other.dream_world.front_default,
+                type: idRes.types.map(t => t.type.name)
+            };
+            return poke;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const getDB = async () => {
     const pokesdb = await Pokemon.findAll({
         include: {
@@ -57,4 +79,16 @@ const getAllPokemons = async () => {
     return infoTotal;
 }
 
-module.exports = {getApi, getDB, getAllPokemons};
+const getAllTypes = async () => {
+    const typesApi = await axios.get('https://pokeapi.co/api/v2/type');
+    const types = typesApi.data.results.map(t => t.name);
+    types.forEach(t => {
+        Type.findOrCreate({
+            where: { name: t }
+        })
+    });
+    const typesdb = await Type.findAll({ attributes: ['name'] });
+    return typesdb;
+}
+
+module.exports = { getApi, getDB, getAllPokemons, getAllTypes, getByName };
