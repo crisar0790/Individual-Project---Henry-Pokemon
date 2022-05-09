@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+.background {
+    background-image: url("../images/pikachu.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background .container .h1 {
+    font-family: 'Bangers', cursive;
+    position: relative;
+    text-decoration: none;
+    color: #39739d;
+    font-size: 40px;
+    letter-spacing: 2px;
+    top: -170px;
+}
+
+.background .container .Btn {
+    border: 1px solid #39739d;
+    padding: 10px;
+    background-color: coral;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Bangers', cursive;
+    font-size: 17px;
+    border-radius: 50px;
+    position: relative;
+    top: -170px;
+}
+
+.background .container .Btn:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+}

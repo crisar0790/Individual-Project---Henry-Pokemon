@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Diplomata+SC&display=swap');
+
+.formContainer {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin: 30px;
+    padding: 30px;
+    background: url("../images/poke.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 90vw;
+    height: auto;
+}
+
+.formContainer h2 {
+    color: #273f50;
+    font-weight: 100;
+    font-family: 'Bangers', cursive;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.formContainer .button {
+    font-family: 'Carter One', cursive;
+    padding: 5px 10px;
+    margin-top: 0px;
+    border: none;
+    background: #105aed;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 300ms;
+}
+
+.formContainer .button:hover {
+    background: #6d06fd;
+    cursor: pointer;
+}
+
+.formContainer .formCreate .form {
+        width: 27%;
+        font-family: 'Carter One', cursive;
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items:flex-end;
+        position: relative;
+        padding: 20px;
+        border-radius: 40px;
+        border: 2px solid;
+        margin: 10px 0;
+        left: 50%;
+        -moz-transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0);
+        -webkit-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);  
+}
+
+.formContainer .formCreate .form {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;    
+    border: 2px solid;
+    margin: 10px 0;
+    left: 50%;
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);  
+}
+
+.formContainer .formCreate .form p {
+    font-size: 8px;
+    color: red;
+}
+
+.formContainer .formCreate .form select {
+    font-family: 'Carter One', cursive;
+    width: 210px;
+    margin: 2px;
+}
+
+.formContainer .formCreate .form input {
+    font-family: 'Carter One', cursive;
+    width: 200px;
+    margin: 2px;
+}
+
+.formContainer .formCreate .form .buttonDelete {
+    font-family: 'Carter One', cursive;
+    padding: 5px 10px;
+    margin-top: 0px;
+    border: none;
+    background: #ff4400;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 300ms;
+}
+
+.formContainer .formCreate .form .buttonDelete:hover {
+    background: #ff0000;
+    cursor: pointer;
+}
+
+.formContainer .formCreate .buttonCreate {
+    font-family: 'Carter One', cursive;
+    padding: 5px 10px;
+    margin-top: 0px;
+    border: none;
+    background: #105aed;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 300ms;
+}
+
+.formContainer .formCreate .buttonCreate:hover {
+    background: #6d06fd;
+    cursor: pointer;
+}
+
+.formContainer .formCreate .disabled {
+    font-family: 'Carter One', cursive;
+    padding: 5px 10px;
+    margin-top: 0px;
+    border: none;
+    background: grey;
+    color: white;
+    font-size: 14px;
+    border-radius: 25px;
+    transition: all 300ms;
+}

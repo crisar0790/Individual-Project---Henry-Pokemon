@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Diplomata+SC&display=swap');
+
+.background1 {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    margin: 30px;
+    padding: 30px;
+    background: url("../images/pokedex.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 90vw;
+    height: 40vw;
+}
+
+.background1 h3 {
+    font-size: 24px;
+    text-decoration: none;
+    margin-top: 5px;
+    font-family: 'Bangers', cursive;
+    color: #313131;
+    font-size: 220%;
+    text-transform: none;
+    margin-bottom: 5px;
+    -webkit-text-stroke: 0.25px white;
+}
+
+.background1 .container1 {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    padding-top: 60px;
+    position: relative;
+}
+
+.background1 .container1 .img {
+    position: absolute;
+    right: 100px;
+    top: -20px;
+    margin: 30px;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 30px 0px 30px 0px;
+    -moz-border-radius: 30px 0px 30px 0px;
+    -webkit-border-radius: 30px 0px 30px 0px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+}
+
+.background1 .container1 .img img {
+    width: 350px;
+    height: 350px;
+    filter: drop-shadow(8px 8px 6px rgba(0, 0, 0, 0.5));
+}
+
+.background1 .container1 .description {
+    position: absolute;
+    width: 350px;
+    left: 100px;
+    top: -20px;
+    margin: 30px;
+    border: 2px solid;
+    padding-left: 20px;
+    border-radius: 0px 30px 0px 30px;
+    -moz-border-radius: 0px 30px 0px 30px;
+    -webkit-border-radius: 0px 30px 0px 30px;
+    font-family: 'Carter One', cursive;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.background1 .container1 .description h4 {
+    text-align: start;
+}
+
+.background1 .buttonHome {
+    font-family: 'Carter One', cursive;
+    padding: 5px 10px;
+    margin-top: 400px;
+    border: none;
+    background: #105aed;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 300ms;
+}
+
+.background1 .buttonHome:hover {
+    background: #6d06fd;
+    cursor: pointer;
+}

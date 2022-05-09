@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Diplomata+SC&display=swap');
+
+:root {
+    --steel-color: #b1a7ba;
+    --water-color: #4592c4;
+    --bug-color: #92e336;
+    --dragon-color: #514485;
+    --electric-color: #ffde05;
+    --ghost-color: #615a92;
+    --fire-color: #fe0404;
+    --fairy-color: #fdb9e9;
+    --ice-color: #90d9e5;
+    --fighting-color: #dc9c8f;
+    --normal-color: #a4acaf;
+    --grass-color: #82d604;
+    --psychic-color: #f89dbb;
+    --rock-color: #bba96f;
+    --dark-color: #4f4436;
+    --ground-color: #f3bf3c;
+    --poison-color: #b97fc9;
+    --flying-color: #4f99fa;
+    --unknown-color: #00a777;
+    --shadow-color: #000000;
+    --soft-gray: #eee;
+}
+
+.card {
+    width: 220px;
+    height: 380px;
+    margin: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    position: relative;
+    border: 1px solid;
+    text-align: center;
+    transition: all 0.25s;
+    background-image: url('../images/pokeball.jpg');
+    border-radius: 30px 0px 30px 0px;
+    -moz-border-radius: 30px 0px 30px 0px;
+    -webkit-border-radius: 30px 0px 30px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(8px 8px 6px rgba(0, 0, 0, 0.5));
+}
+
+.card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.4);
+}
+
+.card .cover {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    border-radius: 30px 0px 0px 0px;
+}
+
+.card .cover img {
+    width: 140px;
+    height: 140px;
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 10px;
+    z-index: 1;
+    filter: drop-shadow(8px 8px 6px rgba(0, 0, 0, 0.5));
+}
+
+.card .description {
+    
+    margin-top: -30px;
+    margin-left: -30px;
+    margin-right: -30px;
+    padding: 20px;
+    border-radius: 0px 0px 30px 0px;
+}
+
+.card .description h3 {
+    text-decoration: none;
+    margin-top: 5px;
+    font-family: 'Bangers', cursive;
+    color: #313131;
+    font-size: 220%;
+    text-transform: none;
+    margin-bottom: 5px;
+    -webkit-text-stroke: 0.25px white;
+}
+
+.card .description button {
+    font-family: 'Carter One', cursive;
+    padding: 6px 20px;
+    margin-top: 0px;
+    border: none;
+    background: #105aed;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 300ms;
+}
+
+.card .description button:hover {
+    background: #6d06fd;
+    cursor: pointer;
+}
+
+.normal {
+    padding: 3px;
+    border: solid 2px var(--normal-color);
+    background-color: var(--normal-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.fighting {
+    padding: 3px;
+    border: solid 2px var(--fighting-color);
+    background-color: var(--fighting-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.flying {
+    padding: 3px;
+    border: solid 2px var(--flying-color);
+    background-color: var(--flying-color);
+    border-radius: 8px;
+    font-family: 'Carter One', cursive;
+}
+
+.poison {
+    padding: 3px;
+    border: solid 2px var(--poison-color);
+    background-color: var(--poison-color);
+    color: var(--absolute-white);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.ground {
+    padding: 3px;
+    border: solid 2px var(--ground-color);
+    background-color: var(--ground-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.rock {
+    padding: 3px;
+    border: solid 2px var(--rock-color);
+    background-color: var(--rock-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.bug {
+    padding: 3px;
+    border: solid 2px var(--bug-color);
+    background-color: var(--bug-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.ghost {
+    padding: 3px;
+    border: solid 2px var(--ghost-color);
+    background-color: var(--ghost-color);
+    color: var(--absolute-white);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.steel {
+    padding: 3px;
+    border: solid 2px var(--steel-color);
+    background-color: var(--steel-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.fire {
+    padding: 3px;
+    border: solid 2px var(--fire-color);
+    background-color: var(--fire-color);
+    border-radius: 8px;
+    font-family: 'Carter One', cursive;
+}
+
+.water {
+    padding: 3px;
+    border: solid 2px var(--water-color);
+    background-color: var(--water-color);
+    border-radius: 8px;
+    font-family: 'Carter One', cursive;
+}
+
+.grass {
+    padding: 3px;
+    border: solid 2px var(--grass-color);
+    background-color: var(--grass-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.electric {
+    padding: 3px;
+    border: solid 2px var(--electric-color);
+    background-color: var(--electric-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.psychic {
+    padding: 3px;
+    border: solid 2px var(--psychic-color);
+    background-color: var(--psychic-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.ice {
+    padding: 3px;
+    border: solid 2px var(--ice-color);
+    background-color: var(--ice-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.dragon {
+    padding: 3px;
+    border: solid 2px var(--dragon-color);
+    background-color: var(--dragon-color);
+    color: var(--absolute-white);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.dark {
+    padding: 3px;
+    border: solid 2px var(--dark-color);
+    background-color: var(--dark-color);
+    color: var(--absolute-white);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.fairy {
+    padding: 3px;
+    border: solid 2px var(--fairy-color);
+    background-color: var(--fairy-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.unknown {
+    padding: 3px;
+    border: solid 2px var(--unknown-color);
+    background-color: var(--unknown-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}
+
+.shadow {
+    padding: 3px;
+    border: solid 2px var(--shadow-color);
+    background-color: var(--shadow-color);
+    color: var(--absolute-white);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+}

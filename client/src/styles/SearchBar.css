@@ -1,0 +1,25 @@
+.search input {
+    font-family: 'Carter One', cursive;
+    width: 300px;
+    height: 25px;
+    border-radius: 25px;
+    border: none;
+}
+
+.search button {
+    font-family: 'Carter One', cursive;
+    padding: 5px 10px;
+    margin-top: 0px;
+    border: none;
+    background: #105aed;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 300ms;
+}
+
+.search button:hover {
+    background: #6d06fd;
+    cursor: pointer;
+}

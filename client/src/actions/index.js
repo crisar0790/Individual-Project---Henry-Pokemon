@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FILTER_CREATED, FILTER_POKEMON, GET_POKEMONS, GET_TYPES, ORDER, SEARCH_POKEMON, CREATE_POKEMON, GET_POKEMON_DETAIL } from './actionsTypes';
+import { FILTER_CREATED, FILTER_TYPE, GET_POKEMONS, GET_TYPES, ORDER, SEARCH_POKEMON, CREATE_POKEMON, GET_POKEMON_DETAIL } from './actionsTypes';
 
 export function getTypes() {
     return async function (dispatch) {
@@ -31,7 +31,7 @@ export function getPokemons() {
 
 export const filterByType = (payload) => {
     return {
-        type: FILTER_POKEMON,
+        type: FILTER_TYPE,
         payload
     }
 };
@@ -59,7 +59,7 @@ export function searchPokemon (name) {
                 payload: res.data
             })
         } catch (error) {
-            alert('Pokemon no encontrdo');
+            alert('No se ha encontrado un pokemon con el nombre ingresado');
         }
     }
 };
@@ -73,7 +73,7 @@ export function createPokemon (payload) {
                 payload: res.data
             })
         } catch (error) {
-            console.log(error);
+            alert('Lamentablemente su pokemon no pudo ser creado');
         }
     }
 }
@@ -91,3 +91,10 @@ export function getPokemonDetail (id) {
         }
     }
 }
+
+export function clearPokemonDetail () {
+    return {
+      type: GET_POKEMON_DETAIL, 
+      payload: undefined
+    }
+  }

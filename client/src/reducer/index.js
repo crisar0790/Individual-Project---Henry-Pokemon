@@ -1,6 +1,6 @@
 import {
     FILTER_CREATED,
-    FILTER_POKEMON,
+    FILTER_TYPE,
     GET_POKEMONS,
     GET_TYPES,
     ORDER,
@@ -8,12 +8,17 @@ import {
     CREATE_POKEMON,
     GET_POKEMON_DETAIL
 } from "../actions/actionsTypes";
+import { filterPokemons, orderPokemons } from "../utils";
 
 const initialState = {
     pokemons: [],
     types: [],
     allPokemons: [],
-    filterdPokemons: [],
+    filteredByType: 'all',
+    filteredType: [],
+    filteredByCreated: 'all',
+    filteredCreated: [],
+    pokemonsByOrder: '',
     detail: []
 }
 
@@ -28,72 +33,33 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 pokemons: action.payload,
-                allPokemons: action.payload,
-                filterdPokemons: action.payload
+                allPokemons: action.payload
             };
-        case FILTER_POKEMON:
-            const typeFiltered = state.allPokemons > state.filterdPokemons ?
-                action.payload === 'all' ? state.filterdPokemons : state.filterdPokemons.filter(p => p.type.find(t => t === action.payload)) :
-                action.payload === 'all' ? state.allPokemons : state.allPokemons.filter(p => p.type.find(t => t === action.payload))
+        case FILTER_TYPE: {
+            let pokemonsFiltered = filterPokemons(state.allPokemons, state.filteredByCreated, action.payload);
+            let pokemonsOrdered = orderPokemons(pokemonsFiltered, state.pokemonsByOrder);
             return {
                 ...state,
-                pokemons: typeFiltered ? typeFiltered : state.filterdPokemons
+                pokemons: pokemonsOrdered,
+                filteredByType: action.payload
             };
-        case FILTER_CREATED:
-            const createdFilter = state.allPokemons > state.filterdPokemons ?
-                action.payload === 'created' ? state.filterdPokemons.filter(p => isNaN(p.id)) : state.filterdPokemons.filter(p => !isNaN(p.id)) :
-                action.payload === 'created' ? state.allPokemons.filter(p => isNaN(p.id)) : state.allPokemons.filter(p => !isNaN(p.id))
+        }
+        case FILTER_CREATED: {
+            let pokemonsFiltered = filterPokemons(state.allPokemons, action.payload, state.filteredByType);
+            let pokemonsOrdered = orderPokemons(pokemonsFiltered, state.pokemonsByOrder);
             return {
                 ...state,
-                pokemons: action.payload === 'all' ? state.filterdPokemons : createdFilter
+                pokemons: pokemonsOrdered,
+                filteredByCreated: action.payload
             };
+        }
         case ORDER:
-            let sortArray = [];
-            console.log(action.payload);
-            if(action.payload === 'asc') {
-                sortArray = state.pokemons.sort((a, b) => {
-                    if (a.name > b.name) {
-                        return 1;
-                    }
-                    if (b.name > a.name) {
-                        return -1;
-                    }
-                    return 0;
-                })
-            } else if (action.payload === 'desc') {
-                sortArray = state.pokemons.sort((a, b) => {
-                    if (a.name > b.name) {
-                        return -1;
-                    }
-                    if (b.name > a.name) {
-                        return 1;
-                    }
-                    return 0;
-                })
-            } else if (action.payload === 'desc attack') {
-                sortArray = state.pokemons.sort((a, b) => {
-                    if (a.attack > b.attack) {
-                        return 1;
-                    }
-                    if (b.attack > a.attack) {
-                        return -1;
-                    }
-                    return 0;
-                })
-            } else if (action.payload === 'asc attack') {
-                sortArray = state.pokemons.sort((a, b) => {
-                    if (a.attack > b.attack) {
-                        return -1;
-                    }
-                    if (b.attack > a.attack) {
-                        return 1;
-                    }
-                    return 0;
-                })
-            }
+            let pokemonsFiltered = filterPokemons(state.allPokemons, state.filteredByCreated, state.filteredByType);
+            let pokemonsOrdered = orderPokemons(pokemonsFiltered, action.payload);
             return {
                 ...state,
-                pokemons: action.payload === '' ? state.allPokemons : sortArray
+                pokemons: pokemonsOrdered,
+                pokemonsByOrder: action.payload
             };
         case SEARCH_POKEMON:
             return {
@@ -109,7 +75,7 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 detail: [action.payload]
             }
-        default: 
+        default:
             return state;
     }
 }

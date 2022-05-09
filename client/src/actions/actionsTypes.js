@@ -3,6 +3,6 @@ export const GET_TYPES = 'GET_TYPES';
 export const CREATE_POKEMON = 'CREATE_POKEMON';
 export const GET_POKEMON_DETAIL = 'GET_POKEMON_DETAIL';
 export const SEARCH_POKEMON = 'SEARCH_POKEMON';
-export const FILTER_POKEMON = 'FILTER_POKEMON';
+export const FILTER_TYPE = 'FILTER_TYPE';
 export const FILTER_CREATED = 'FILTER_CREATED';
 export const ORDER = 'ORDER';
