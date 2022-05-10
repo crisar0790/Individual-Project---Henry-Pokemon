@@ -24,8 +24,9 @@ const getApi = async () => {
 }
 
 const getByName = async (name) => {
+    let nameReq = name.toLowerCase()
     try {
-        const idReq = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        const idReq = await axios.get(`https://pokeapi.co/api/v2/pokemon/${nameReq}`);
         const idRes = await idReq.data;
             let poke = {
                 name: idRes.name,
