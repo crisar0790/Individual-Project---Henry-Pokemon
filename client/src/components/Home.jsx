@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 import { getPokemons, getTypes, filterByType, filterCreated, order } from "../actions";
 import Card from "./Card";
 import SearchBar from "./SearchBar";
+import Loader from "./Loader";
 import '../styles/Home.css'
 
 export default function Home() {
     const dispatch = useDispatch();
     const allPokemons = useSelector((state) => state.pokemons);
-    const allTypes = useSelector((state) => state.types);
+    const allTypes = useSelector((state) => state.types); 
+
+    const [loading, setLoading] = useState(true);
 
     const [orden, setOrden] = useState('')
 
@@ -29,7 +32,14 @@ export default function Home() {
         setCurrentPage(currentPage - 1);
     }
 
-
+    useEffect(() => {
+        if (allPokemons.length) {
+            setLoading(false);
+        } else {
+            setLoading(true);
+        }
+    }, [allPokemons, loading]);
+    
     useEffect(() => {
         dispatch(getPokemons());
         dispatch(getTypes());
@@ -54,6 +64,12 @@ export default function Home() {
         setOrden(`Ordenado ${e.target.value}`);
     }
 
+    function handleClick(e) {
+        e.preventDefault();
+        dispatch(getPokemons());
+        alert('Aguarde mientras todos los Pokémon vuelven a cargarse.');
+    }
+
     return (
         <div className='wallpaper'>
             <div>
@@ -67,10 +83,11 @@ export default function Home() {
                         <img src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/87044f58-c765-43c5-bc51-8613e3ac7ab1/ddew4m7-c69a2c41-518f-48ca-ba35-8ab1895464e0.png' alt='pokes'width='200px'/>
                     </div>
                     <div className='navhome_filter'>
+                        <button onClick={e => handleClick(e)}>Volver a cargar</button>
                         <div>
                             <span>Ordenar por:  </span>
                             <select onChange={e => handleOrder(e)}>
-                                <option value='' disabled selected>Seleccionar...</option>
+                                <option value=''>Sin ordenar</option>
                                 <option value='asc'>A - Z</option>
                                 <option value='desc'>Z - A</option>
                                 <option value='asc attack'>Mayor fuerza</option>
@@ -97,16 +114,19 @@ export default function Home() {
                 <br />
                 <div className='container'>
                     {
-                        currentPokemons?.map((p) => {
-                            return (
+                        loading ?
+                        (<Loader />) : (
+                            currentPokemons.map((p) => 
+                            (
                                 <div className='linkcard'>
                                     <Card image={p.image} name={p.name} type={p.type} id={p.id} key={p.id} />
                                 </div>
                             )
-                        })
+                        )
+                        )
+
                     }
                 </div>
-
                 {
                     currentPokemons.length ?
                         (
@@ -123,12 +143,7 @@ export default function Home() {
                                         : <button className='button' onClick={() => { nextPage() }}>Siguiente</button>
                                 }
                             </div>)
-                        ) : (
-                            <div>
-                                <h3>CARGANDO ...</h3>
-                                <img src='https://66.media.tumblr.com/9697ebbc4887dc57620c50a12f24c61d/tumblr_nc1rokF7r31s1rd1xo1_500.gif' alt='pokeball img' width='250px' />
-                            </div>
-                        )
+                        ) : null
                 }
                 <br />
             </div>

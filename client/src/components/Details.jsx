@@ -30,9 +30,7 @@ export default function Details({ match }) {
                 {
                     pokemon.length === 1 ?
                         (<div className='container1'>
-                            <div className='img'>
-                                <img src={pokemon[0].image} alt={pokemon[0].name} />
-                            </div>
+                            <img src={pokemon[0].image} alt={pokemon[0].name} />
                             <div className='description'>
                                 <h4>Nombre: {pokemon[0].name}</h4>
                                 <h4>ID: {pokemon[0].id}</h4>

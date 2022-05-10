@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getTypes, createPokemon } from '../actions';
 import '../styles/PokemonCreate.css';
+import axios from "axios";
 
 function validate(input) {
     let errors = {};
@@ -41,7 +42,7 @@ function validate(input) {
         errors.image = 'La URL de imagen debe tener un formato válido.';
     } else if (input.type.length < 1 || input.type.length > 2) {
         errors.type = 'Debe elegir al menos un tipo y como máximo dos.';
-    } 
+    }
 
     return errors;
 }
@@ -65,7 +66,6 @@ export default function PokemonCreate() {
         image: '',
         type: []
     });
-
 
     function handleChange(e) {
         setInput({
@@ -105,22 +105,27 @@ export default function PokemonCreate() {
         })
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        dispatch(createPokemon(input));
-        alert('¡Pokemon creado!');
-        setInput({
-            name: '',
-            life: '',
-            attack: '',
-            defense: '',
-            speed: '',
-            height: '',
-            weight: '',
-            image: '',
-            type: []
-        });
-        history.push('/home');
+        try {
+            await axios.get(`http://localhost:3001/pokemons?name=${input.name}`);
+            alert('Ya existe un pokemon con ese nombre');
+        } catch (error) {
+            dispatch(createPokemon(input));
+            alert('¡Pokémon creado! Aguarde unos instantes para ver su pokémon en Home');
+            setInput({
+                name: '',
+                life: '',
+                attack: '',
+                defense: '',
+                speed: '',
+                height: '',
+                weight: '',
+                image: '',
+                type: []
+            });
+            history.push('/home');
+        }
     }
 
     useEffect(() => {
@@ -135,7 +140,7 @@ export default function PokemonCreate() {
             !errors.hasOwnProperty("weight") &&
             !errors.hasOwnProperty("image") &&
             input.type.length >= 1 &&
-            input.type.length <= 2
+            input.type.length <= 2 
         ) {
             setDisabled(false);
         } else {
@@ -242,8 +247,8 @@ export default function PokemonCreate() {
                 <div>
                     {
                         disabled === false ?
-                        (<button className='buttonCreate' type='submit' disabled={disabled}>Crear Pokemon</button>) :
-                        (<button className='disabled' type='submit' disabled={disabled}>Crear Pokemon</button>)
+                            (<button className='buttonCreate' type='submit' disabled={disabled}>Crear Pokemon</button>) :
+                            (<button className='disabled' type='submit' disabled={disabled}>Crear Pokemon</button>)
                     }
                 </div>
             </form>

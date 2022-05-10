@@ -62,8 +62,26 @@
     justify-content: center;
     align-items: center;
     justify-content: space-between;
-    margin-left: 250px;
-    margin-right: 250px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.wallpaper .navhome .navhome_filter button {
+    font-family: 'Carter One', cursive;
+    padding: 5px 10px;
+    margin-top: 0px;
+    border: none;
+    background: #105aed;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 300ms;
+}
+
+.wallpaper .navhome .navhome_filter button:hover {
+    background: #6d06fd;
+    cursor: pointer;
 }
 
 .wallpaper .navhome .bar {

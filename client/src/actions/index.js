@@ -29,6 +29,8 @@ export function getPokemons() {
     }
 }
 
+
+
 export const filterByType = (payload) => {
     return {
         type: FILTER_TYPE,
@@ -73,7 +75,7 @@ export function createPokemon (payload) {
                 payload: res.data
             })
         } catch (error) {
-            alert('Lamentablemente su pokemon no pudo ser creado');
+            alert('Lamentablemente su pokemon no pudo ser creado porque ya existe uno con ese nombre. Intente nuevamente con un nombre diferente.');
         }
     }
 }
