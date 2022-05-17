@@ -14,27 +14,27 @@ function validate(input) {
         errors.name = 'El nombre sólo debe contener letras minúsculas.';
     } else if (!input.life) {
         errors.life = 'Vida es un parámetro requerido.';
-    } else if (isNaN(input.life) || !parseInt(input.life) === input.life || input.life < 1 || input.life > 200) {
+    } else if (!/^([1-9]|[1-9][0-9]|1[0-9][0-9]|200)$/.test(input.life)) {
         errors.life = 'La vida debe tener un valor entre 1 y 200.';
     } else if (!input.attack) {
         errors.attack = 'Fuerza es un parámetro requerido.';
-    } else if (isNaN(input.attack) || !parseInt(input.attack) === input.attack || input.attack < 1 || input.attack > 200) {
+    } else if (!/^([1-9]|[1-9][0-9]|1[0-9][0-9]|200)$/.test(input.attack)) {
         errors.attack = 'La fuerza debe tener un valor entre 1 y 200.';
     } else if (!input.defense) {
         errors.defense = 'Defensa es un parámetro requerido.'
-    } else if (isNaN(input.defense) || !parseInt(input.defense) === input.defense || input.defense < 1 || input.defense > 200) {
+    } else if (!/^([1-9]|[1-9][0-9]|1[0-9][0-9]|200)$/.test(input.defense)) {
         errors.defense = 'La defensa debe tener un valor entre 1 y 200.';
     } else if (!input.speed) {
         errors.speed = 'Velocidd es un parámetro requerido.';
-    } else if (isNaN(input.speed) || !parseInt(input.speed) === input.speed || input.speed < 1 || input.speed > 200) {
+    } else if (!/^([1-9]|[1-9][0-9]|1[0-9][0-9]|200)$/.test(input.speed)) {
         errors.speed = 'La velocidad debe tener un valor entre 1 y 200.';
     } else if (!input.height) {
         errors.height = 'Altura es un parámetro requerido.';
-    } else if (isNaN(input.height) || !parseInt(input.height) === input.height || input.height < 1 || input.height > 200) {
+    } else if (!/^([1-9]|[1-9][0-9]|1[0-9][0-9]|200)$/.test(input.height)) {
         errors.height = 'La altura debe tener un valor entre 1 y 200.';
     } else if (!input.weight) {
         errors.weight = 'Peso es un parámetro requerido.';
-    } else if (isNaN(input.weight) || !parseInt(input.weight) === input.weight || input.weight < 1 || input.weight > 10000) {
+    } else if (!/^([1-9]|[1-9][0-9]|[0-9][0-9][0-9]|[0-9][0-9][0-9][0-9]|10000)$/.test(input.weight)) {
         errors.weight = 'El peso debe tener un valor entre 1 y 10000.';
     } else if (!input.image) {
         errors.image = 'Imagen es un parámetro requerido.';

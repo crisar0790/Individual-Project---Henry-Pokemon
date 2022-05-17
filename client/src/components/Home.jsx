@@ -11,7 +11,7 @@ import '../styles/Home.css'
 export default function Home() {
     const dispatch = useDispatch();
     const allPokemons = useSelector((state) => state.pokemons);
-    const allTypes = useSelector((state) => state.types); 
+    const allTypes = useSelector((state) => state.types);
 
     const [loading, setLoading] = useState(true);
 
@@ -39,7 +39,7 @@ export default function Home() {
             setLoading(true);
         }
     }, [allPokemons, loading]);
-    
+
     useEffect(() => {
         dispatch(getPokemons());
         dispatch(getTypes());
@@ -75,12 +75,12 @@ export default function Home() {
             <div>
                 <nav className='navhome'>
                     <div className='bar'>
-                        <img src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/87044f58-c765-43c5-bc51-8613e3ac7ab1/ddew4m7-c69a2c41-518f-48ca-ba35-8ab1895464e0.png' alt='pokémon' width='200px'/>
+                        <img src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/87044f58-c765-43c5-bc51-8613e3ac7ab1/ddew4m7-c69a2c41-518f-48ca-ba35-8ab1895464e0.png' alt='pokémon' width='200px' />
                         <Link to='/pokemons'>
                             <button>Crear Pokémon</button>
                         </Link>
                         <SearchBar />
-                        <img src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/87044f58-c765-43c5-bc51-8613e3ac7ab1/ddew4m7-c69a2c41-518f-48ca-ba35-8ab1895464e0.png' alt='pokes'width='200px'/>
+                        <img src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/87044f58-c765-43c5-bc51-8613e3ac7ab1/ddew4m7-c69a2c41-518f-48ca-ba35-8ab1895464e0.png' alt='pokes' width='200px' />
                     </div>
                     <div className='navhome_filter'>
                         <button onClick={e => handleClick(e)}>Volver a cargar</button>
@@ -115,34 +115,34 @@ export default function Home() {
                 <div className='container'>
                     {
                         loading ?
-                        (<Loader />) : (
-                            currentPokemons.map((p) => 
+                            (<Loader />) :
                             (
-                                <div className='linkcard'>
-                                    <Card image={p.image} name={p.name} type={p.type} id={p.id} key={p.id} />
-                                </div>
+                                currentPokemons.map((p) =>
+                                (
+                                    <div className='linkcard'>
+                                        <Card image={p.image} name={p.name} type={p.type} id={p.id} key={p.id} />
+                                    </div>
+                                )
+                                )
                             )
-                        )
-                        )
-
                     }
                 </div>
                 {
                     currentPokemons.length ?
                         (
                             pageNumber === 1 ?
-                            null :
-                            (<div className='pagination'>
-                                {
-                                    currentPage === 1 ? <button className='disabled' disabled onClick={() => { prePage() }}>Anterior</button>
-                                        : <button className='button' onClick={() => { prePage() }}>Anterior</button>
-                                }
-                                <span>  Pág.: {currentPage} de {pageNumber}  </span>
-                                {
-                                    currentPage === pageNumber ? <button className='disabled' disabled onClick={() => { nextPage() }}>Siguiente</button>
-                                        : <button className='button' onClick={() => { nextPage() }}>Siguiente</button>
-                                }
-                            </div>)
+                                null :
+                                (<div className='pagination'>
+                                    {
+                                        currentPage === 1 ? <button className='disabled' disabled onClick={() => { prePage() }}>Anterior</button>
+                                            : <button className='button' onClick={() => { prePage() }}>Anterior</button>
+                                    }
+                                    <span>  Pág.: {currentPage} de {pageNumber}  </span>
+                                    {
+                                        currentPage === pageNumber ? <button className='disabled' disabled onClick={() => { nextPage() }}>Siguiente</button>
+                                            : <button className='button' onClick={() => { nextPage() }}>Siguiente</button>
+                                    }
+                                </div>)
                         ) : null
                 }
                 <br />

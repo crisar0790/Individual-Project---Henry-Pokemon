@@ -61,16 +61,6 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     const { name, life, attack, defense, speed, height, weight, image, type } = req.body;
     try {
-        // if (!name) return res.status(400).send('El nombre es un campo obligatorio.');
-        // let pokemonTotal = await getAllPokemons();
-        // let pokemonName = pokemonTotal.find(p => p.name === name)
-        // if (pokemonName) return res.status(400).send('Ya existe un pokemon con ese nombre.')
-        // if (isNaN(life) || isNaN(attack) || isNaN(defense) || isNaN(speed) || isNaN(height) || isNaN(weight)) {
-        //     return res.status(400).send('Estos campos deben recibir números enteros.')
-        // }
-        // if (!/https?:\/\/[^.]*?(\.[^.]+?)*\/.*?\.(jpg|jpeg|gif|png|svg)/g.test(image)) {
-        //     return res.status(400).send('La URL no corresponde a un formato válido de imagen')
-        // }
         const pokemon = await Pokemon.create({
             name,
             life,
@@ -90,6 +80,20 @@ router.post('/', async (req, res, next) => {
         next(error);
     }
 })
+
+router.delete('/delete/:id', async (req, res, next) =>{
+    const {id} = req.params;
+    try {
+        const pokemon = await Pokemon.findByPk(id);
+        if (pokemon) {
+            await pokemon.destroy();
+            res.send('Pokémon elimindo con éxito')
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 
 module.exports = router;

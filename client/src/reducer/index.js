@@ -6,7 +6,8 @@ import {
     ORDER,
     SEARCH_POKEMON,
     CREATE_POKEMON,
-    GET_POKEMON_DETAIL
+    GET_POKEMON_DETAIL,
+    DELETE_POKEMON
 } from "../actions/actionsTypes";
 import { filterPokemons, orderPokemons } from "../utils";
 
@@ -75,8 +76,12 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 detail: [action.payload]
             }
+        case DELETE_POKEMON:
+            return {
+                ...state
+            }
         default:
-            return state;
+            return { ...state };
     }
 }
 

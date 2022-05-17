@@ -6,3 +6,4 @@ export const SEARCH_POKEMON = 'SEARCH_POKEMON';
 export const FILTER_TYPE = 'FILTER_TYPE';
 export const FILTER_CREATED = 'FILTER_CREATED';
 export const ORDER = 'ORDER';
+export const DELETE_POKEMON = 'DELETE_POKEMON';

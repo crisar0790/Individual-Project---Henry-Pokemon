@@ -90,9 +90,14 @@
     -webkit-text-stroke: 0.25px white;
 }
 
-.card .description button {
+.card .description .buttons {
+    align-items: center;
+    justify-content:space-between;
+}
+
+.card .description .buttons .button {
     font-family: 'Carter One', cursive;
-    padding: 6px 20px;
+    padding: 6px 10px;
     margin-top: 0px;
     border: none;
     background: #105aed;
@@ -103,8 +108,26 @@
     transition: all 300ms;
 }
 
-.card .description button:hover {
+.card .description .buttons .button:hover {
     background: #6d06fd;
+    cursor: pointer;
+}
+
+.card .description .buttons .buttonDelete {
+    font-family: 'Carter One', cursive;
+    padding: 6px 10px;
+    margin-top: 0px;
+    border: none;
+    background: #e02200;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 300ms;
+}
+
+.card .description .buttons .buttonDelete:hover {
+    background: #a20000;
     cursor: pointer;
 }
 

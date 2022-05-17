@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FILTER_CREATED, FILTER_TYPE, GET_POKEMONS, GET_TYPES, ORDER, SEARCH_POKEMON, CREATE_POKEMON, GET_POKEMON_DETAIL } from './actionsTypes';
+import { FILTER_CREATED, FILTER_TYPE, GET_POKEMONS, GET_TYPES, ORDER, SEARCH_POKEMON, CREATE_POKEMON, GET_POKEMON_DETAIL, DELETE_POKEMON } from './actionsTypes';
 
 export function getTypes() {
     return async function (dispatch) {
@@ -52,7 +52,7 @@ export const order = (payload) => {
     }
 };
 
-export function searchPokemon (name) {
+export function searchPokemon(name) {
     return async function (dispatch) {
         try {
             const res = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
@@ -66,10 +66,10 @@ export function searchPokemon (name) {
     }
 };
 
-export function createPokemon (payload) {
+export function createPokemon(payload) {
     return async function (dispatch) {
         try {
-            const res =  await axios.post('http://localhost:3001/pokemons', payload);
+            const res = await axios.post('http://localhost:3001/pokemons', payload);
             return dispatch({
                 type: CREATE_POKEMON,
                 payload: res.data
@@ -80,7 +80,7 @@ export function createPokemon (payload) {
     }
 }
 
-export function getPokemonDetail (id) {
+export function getPokemonDetail(id) {
     return async function (dispatch) {
         try {
             const res = await axios.get(`http://localhost:3001/pokemons/${id}`);
@@ -94,9 +94,17 @@ export function getPokemonDetail (id) {
     }
 }
 
-export function clearPokemonDetail () {
+export function clearPokemonDetail() {
     return {
-      type: GET_POKEMON_DETAIL, 
-      payload: undefined
+        type: GET_POKEMON_DETAIL,
+        payload: undefined
     }
-  }
+}
+
+export function deletePokemon(id) {
+    return function (dispatch) {
+        return axios.delete(`http://localhost:3001/pokemons/delete/${id}`)
+            .then(res => dispatch({ type: DELETE_POKEMON }))
+            .catch(e => console.log(e))
+    }
+}
