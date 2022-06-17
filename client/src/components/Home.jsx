@@ -6,6 +6,7 @@ import { getPokemons, getTypes, filterByType, filterCreated, order } from "../ac
 import Card from "./Card";
 import SearchBar from "./SearchBar";
 import Loader from "./Loader";
+import swal from "sweetalert";
 import '../styles/Home.css'
 
 export default function Home() {
@@ -26,10 +27,12 @@ export default function Home() {
 
     const nextPage = () => {
         setCurrentPage(currentPage + 1);
+        window.scroll(0,0);
     }
 
     const prePage = () => {
         setCurrentPage(currentPage - 1);
+        window.scroll(0,0);
     }
 
     useEffect(() => {
@@ -67,7 +70,9 @@ export default function Home() {
     function handleClick(e) {
         e.preventDefault();
         dispatch(getPokemons());
-        alert('Aguarde mientras todos los Pokémon vuelven a cargarse.');
+        swal("Aguarde mientras todos los Pokémon vuelven a cargarse.", {
+            icon: "success",
+          });
     }
 
     return (
@@ -76,14 +81,14 @@ export default function Home() {
                 <nav className='navhome'>
                     <div className='bar'>
                         <img src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/87044f58-c765-43c5-bc51-8613e3ac7ab1/ddew4m7-c69a2c41-518f-48ca-ba35-8ab1895464e0.png' alt='pokémon' width='200px' />
+                        <button onClick={e => handleClick(e)}>Volver a cargar</button>
                         <Link to='/pokemons'>
                             <button>Crear Pokémon</button>
                         </Link>
                         <SearchBar />
                         <img src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/87044f58-c765-43c5-bc51-8613e3ac7ab1/ddew4m7-c69a2c41-518f-48ca-ba35-8ab1895464e0.png' alt='pokes' width='200px' />
                     </div>
-                    <div className='navhome_filter'>
-                        <button onClick={e => handleClick(e)}>Volver a cargar</button>
+                    <div className='navhome_filter'>   
                         <div>
                             <span>Ordenar por:  </span>
                             <select onChange={e => handleOrder(e)}>

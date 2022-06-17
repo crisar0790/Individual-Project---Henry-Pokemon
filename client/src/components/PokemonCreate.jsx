@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTypes, createPokemon } from '../actions';
 import '../styles/PokemonCreate.css';
 import axios from "axios";
+import swal from "sweetalert"
 
 function validate(input) {
     let errors = {};
@@ -112,7 +113,9 @@ export default function PokemonCreate() {
             alert('Ya existe un pokemon con ese nombre');
         } catch (error) {
             dispatch(createPokemon(input));
-            alert('¡Pokémon creado! Aguarde unos instantes para ver su pokémon en Home');
+            swal("¡Pokémon creado! Aguarde unos instantes para ver su pokémon en Home", {
+                icon: "success",
+              });
             setInput({
                 name: '',
                 life: '',
@@ -129,7 +132,6 @@ export default function PokemonCreate() {
     }
 
     useEffect(() => {
-        //useEffect para habilitar o deshabilitar el boton create, cuando se cumplan ciertas condiciones
         if (
             !errors.hasOwnProperty("name") &&
             !errors.hasOwnProperty("life") &&

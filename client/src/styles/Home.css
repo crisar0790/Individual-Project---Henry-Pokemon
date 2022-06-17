@@ -18,13 +18,13 @@
     display: block;
     justify-content: center;
     align-items: center;
-    width: 95%;
+    width: 95vw;
     background-image: url('https://image.shutterstock.com/image-photo/vintage-wooden-blue-horizontal-boards-260nw-425000974.jpg');
     border-radius: 15px;
     border-color: rgb(221, 239, 239);
     border: 1px solid;
     padding: 20px;
-    margin: 10px;
+    margin: 0.5vw;
     position: fixed;
     z-index: 100;
 }
@@ -61,7 +61,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-left: 200px;
     margin-right: 200px;
 }

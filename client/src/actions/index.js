@@ -1,4 +1,5 @@
 import axios from 'axios';
+import swal from 'sweetalert';
 import { FILTER_CREATED, FILTER_TYPE, GET_POKEMONS, GET_TYPES, ORDER, SEARCH_POKEMON, CREATE_POKEMON, GET_POKEMON_DETAIL, DELETE_POKEMON } from './actionsTypes';
 
 export function getTypes() {
@@ -61,7 +62,9 @@ export function searchPokemon(name) {
                 payload: res.data
             })
         } catch (error) {
-            alert('No se ha encontrado un pokemon con el nombre ingresado');
+            swal("No se ha encontrado un pokemon con el nombre ingresado", {
+                icon: "error",
+              });
         }
     }
 };
